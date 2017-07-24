@@ -1,0 +1,6 @@
+awk 'BEGIN{i=0} # inicio
+FNR==NR { a[i++]=$1; next } # aqui considera apenas o primeiro arquivo salvando os nomes em um arranjo
+{ for(j=0;j<i;j++) # inicio do loop no segundo arquivo
+        if ((index($1,a[j]) || index($2,a[j])) && $3 >= 96 && $5 >= 0.6) # checa os nomes do array do primeiro arquivo com os do segundo arquivo
+            print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 # printa os nomes e salva em um terceiro arquivo (resultados)
+}' lista_especies_tipo output_gani_editado >> resultados # fim do programa
